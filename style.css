@@ -56,17 +56,36 @@ button {
     html {
         font-size: 16px;
     }
+
     .div-principal {
         margin-top: 30px;
     }
+
     .saidas {
         width: 100%;
     }
+
     textarea {
         width: 40vmax;
         font-size: 14px;
     }
+    
     h1 {
         font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .saidas {
+        flex-direction: column;
+        justify-content: normal;
+    }
+
+    textarea {
+        width: 90%;
+    }
+
+    button {
+        margin: 10px 0;
     }
 }
