@@ -35,8 +35,7 @@ async function preencherCoordenadas() {
     saidaCoordenadas.value = "";
     coordenadas = [];
     await obterCoordenadas();
-    console.log(coordenadas);
-
+    
     coordenadas.forEach(coordenada => {
         if (coordenada[0] == "erro" || coordenada[1] == "erro") {
             saidaCoordenadas.value += `Não foi possível obter a coordenada do endereço: ${coordenada[2]}\n`;
