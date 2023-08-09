@@ -1,3 +1,5 @@
+import { api_key } from "./config.js";
+
 const entradaEnderecos = document.querySelector("#entrada-enderecos");
 const saidaCoordenadas = document.querySelector("#saida-coordenadas");
 const botao = document.querySelector("#botao");
@@ -8,15 +10,16 @@ function obterCoordenadas() {
     let enderecos = entradaEnderecos.value;
     let latitude = "";
     let longitude = "";
+    let detalhes = "";
     enderecos = enderecos.split('\n');
 
     return Promise.all(enderecos.map(async endereco => {
-        await new Promise(resolve => fetch(`https://geocode.maps.co/search?q=${endereco}`)
+        await new Promise(resolve => fetch(`http://api.positionstack.com/v1/forward?access_key=${api_key}&query=${endereco}`)
             .then(response => response.json())
             .then(data => {
-                if (data[0]) {
-                    latitude = data[0].lat;
-                    longitude = data[0].lon;
+                if (data.data[0]) {
+                    latitude = data.data[0].latitude;
+                    longitude = data.data[0].longitude;
                 }
                 else {
                     latitude = "erro";
