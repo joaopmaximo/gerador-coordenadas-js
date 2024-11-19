@@ -1,8 +1,7 @@
-import { api_key } from "./config.js";
-
-const entradaEnderecos = document.querySelector("#entrada-enderecos");
-const saidaCoordenadas = document.querySelector("#saida-coordenadas");
-const botao = document.querySelector("#botao");
+const entradaEnderecos = document.getElementById("entrada-enderecos");
+const coordenadasDiv = document.getElementById("coordenadas-div");
+const botao = document.getElementById("botao");
+const api_key = "pk.1c7ad57dab8a678fdc08f03e7a149bcf";
 
 let coordenadas = [];
 
@@ -14,12 +13,12 @@ function obterCoordenadas() {
     enderecos = enderecos.split('\n');
 
     return Promise.all(enderecos.map(async endereco => {
-        await new Promise(resolve => fetch(`http://api.positionstack.com/v1/forward?access_key=${api_key}&query=${endereco}`)
+        await new Promise(resolve => fetch(`https://us1.locationiq.com/v1/search?key=${api_key}&q=${endereco}&format=json&`)
             .then(response => response.json())
             .then(data => {
-                if (data.data[0]) {
-                    latitude = data.data[0].latitude;
-                    longitude = data.data[0].longitude;
+                if (data[0]) {
+                    latitude = data[0].lat;
+                    longitude = data[0].lon;
                 }
                 else {
                     latitude = "erro";
@@ -35,17 +34,19 @@ function obterCoordenadas() {
 }
 
 async function preencherCoordenadas() {
-    saidaCoordenadas.value = "";
     coordenadas = [];
     await obterCoordenadas();
-    
+
     coordenadas.forEach(coordenada => {
+        let coordenadaElement = document.createElement("span");
         if (coordenada[0] == "erro" || coordenada[1] == "erro") {
-            saidaCoordenadas.value += `Não foi possível obter a coordenada do endereço: ${coordenada[2]}\n`;
+            coordenadaElement.textContent = `Não foi possível obter a coordenada do endereço: ${coordenada[2]}`;
+            coordenadaElement.classList.add("inactivate");
         }
         else {
-            saidaCoordenadas.value += `${coordenada[0]} ${coordenada[1]}\n`;
+            coordenadaElement.innerHTML = `${coordenada[0]} ${coordenada[1]}<span class="inactivate"> ${coordenada[2]}</span>`;
         }
+        coordenadasDiv.appendChild(coordenadaElement);
     });
 }
 

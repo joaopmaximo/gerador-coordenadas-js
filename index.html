@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Coordenadas</title>
     <link rel="stylesheet" href="style.css">
-    <script src="gerador-coordenadas.js" type="module" defer></script>
+    <script src="gerador-coordenadas.js" defer></script>
 </head>
 <body>
     <div class="div-principal">
         <h1>Gerador de Coordenadas</h1>
-        <div class="saidas">
-            <div class="saidas2">
-                <label for="textarea-enderecos">Insira os endereços aqui:</label>
-                <textarea name="textarea-enderecos" id="entrada-enderecos"></textarea>
-                <button id="botao">gerar coordenadas</button>
+        <div class="div-um">
+            <div class="div-dois">
+                <h2><label for="textarea-enderecos">Endereços:</label></h2>
+                <textarea name="textarea-enderecos" title="textarea-enderecos" placeholder="logradouro, cidade, estado..." id="entrada-enderecos"></textarea>
+                <button id="botao" type="submit">gerar coordenadas</button>
             </div>
-            <div class="saidas2">
-                <label for="textarea-coordenadas">Coordenadas:</label>
-                <textarea name="textarea-coordenadas" id="saida-coordenadas"></textarea>
+            <div class="div-dois">
+                <h2>Coordenadas:</h2>
+                <div class="div-tres" id="coordenadas-div"></div>
             </div>
         </div>
     </div>
