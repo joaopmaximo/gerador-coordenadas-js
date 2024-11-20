@@ -1,9 +1,13 @@
 const entradaEnderecos = document.getElementById("entrada-enderecos");
-const coordenadasDiv = document.getElementById("coordenadas-div");
+const coordenadasDiv = document.getElementById("div-coordenadas");
 const botao = document.getElementById("botao");
 const api_key = "pk.1c7ad57dab8a678fdc08f03e7a149bcf";
 
 let coordenadas = [];
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function obterCoordenadas() {
     let enderecos = entradaEnderecos.value;
@@ -12,7 +16,8 @@ function obterCoordenadas() {
     let detalhes = "";
     enderecos = enderecos.split('\n');
 
-    return Promise.all(enderecos.map(async endereco => {
+    return Promise.all(enderecos.map(async (endereco, index) => {
+        await delay(index * 500);
         await new Promise(resolve => fetch(`https://us1.locationiq.com/v1/search?key=${api_key}&q=${endereco}&format=json&`)
             .then(response => response.json())
             .then(data => {
@@ -36,6 +41,7 @@ function obterCoordenadas() {
 async function preencherCoordenadas() {
     coordenadas = [];
     await obterCoordenadas();
+    coordenadasDiv.innerHTML = '';
 
     coordenadas.forEach(coordenada => {
         let coordenadaElement = document.createElement("span");
@@ -49,5 +55,3 @@ async function preencherCoordenadas() {
         coordenadasDiv.appendChild(coordenadaElement);
     });
 }
-
-botao.addEventListener("click", () => preencherCoordenadas());

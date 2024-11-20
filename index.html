@@ -1,26 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Coordenadas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="gerador-coordenadas.js" defer></script>
 </head>
+
 <body>
-    <div class="div-principal">
-        <h1>Gerador de Coordenadas</h1>
-        <div class="div-um">
-            <div class="div-dois">
-                <h2><label for="textarea-enderecos">Endereços:</label></h2>
-                <textarea name="textarea-enderecos" title="textarea-enderecos" placeholder="logradouro, cidade, estado..." id="entrada-enderecos"></textarea>
-                <button id="botao" type="submit">gerar coordenadas</button>
+    <header>
+        <div class="container d-flex justify-content-between align-items-center pt-4 pb-1">
+            <img src="img/logo-branca-350.png" alt="joaopmaximo logo">
+            <div class="d-flex gap-4">
+                <a href="https://github.com/joaopmaximo/gerador-coordenadas-js" target="_blank">
+                    <img src="img/github-icon-branco-350.png" alt="github logo">
+                </a>
+                <a href="https://www.linkedin.com/in/joao-pedro-maximo-da-silva/" target="_blank">
+                    <img src="img/linkedin-icon-branco-350.png" alt="github logo">
+                </a>
             </div>
-            <div class="div-dois">
-                <h2>Coordenadas:</h2>
-                <div class="div-tres" id="coordenadas-div"></div>
+        </div>
+        <hr>
+    </header>
+    <div class="container my-5">
+        <h1 class="fs-2 fw-bold">Converter endereços para coordenadas</h1>
+        <p class="fs-5 fw-medium">Insira os endereços e retornaremos suas relativas coordenadas</p>
+        <div class="d-flex flex-wrap gap-5 mt-4">
+            <div class="d-flex flex-column flex-fill gap-3 mt-4">
+                <span class="fs-5 fw-bold">Endereços</span>
+                <textarea name="textarea-enderecos" title="textarea-enderecos" placeholder="logradouro, cidade, estado..."
+                    id="entrada-enderecos"></textarea>
+                <button class="align-self-start btn btn-success" type="submit" onclick="preencherCoordenadas()">gerar coordenadas</button>
+            </div>
+            <div class="d-flex flex-column flex-fill gap-3 mt-4">
+                <span class="fs-5 fw-bold">Coordenadas</span>
+                <div id="div-coordenadas" class="d-flex flex-column"></div>
             </div>
         </div>
     </div>
 </body>
+
 </html>
